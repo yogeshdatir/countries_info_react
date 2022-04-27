@@ -1,8 +1,12 @@
 import React from "react";
-import { CardContainer } from "./Card.styled";
+import { CardContainer, FlexContainer } from "./Card.styled";
 
 const Card = () => {
-  return <CardContainer>Card</CardContainer>;
+  return (
+    <FlexContainer>
+      <CardContainer>Card</CardContainer>
+    </FlexContainer>
+  );
 };
 
 export default Card;

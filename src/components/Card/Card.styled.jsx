@@ -1,9 +1,14 @@
 import styled from "@emotion/styled";
 
-const CardContainer = styled.div`
-  background-color: #fff;
-  flex-basis: 23%;
+const FlexContainer = styled.div`
+  padding: 2.5%;
+  flex-basis: 25%;
   box-sizing: border-box;
 `;
 
-export { CardContainer };
+const CardContainer = styled.div`
+  background-color: #fff;
+  width: 100%;
+`;
+
+export { FlexContainer, CardContainer };
