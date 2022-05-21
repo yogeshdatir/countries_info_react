@@ -1,6 +1,10 @@
 import { all } from "redux-saga/effects";
-import countriesSaga from "./countriesSaga";
+import {
+  countriesSaga,
+  filterCountriesSaga,
+  searchCountriesSaga,
+} from "./countriesSaga";
 
 export default function* rootSaga() {
-  yield all([countriesSaga()]);
+  yield all([countriesSaga(), searchCountriesSaga(), filterCountriesSaga()]);
 }

@@ -1,10 +1,38 @@
 import React from "react";
-import { CardContainer, FlexContainer } from "./Card.styled";
+import {
+  CardContainer,
+  CountryDetails,
+  CountryInfo,
+  CountryName,
+  FlagImage,
+  FlexContainer,
+} from "./Card.styled";
 
-const Card = () => {
+const Card = ({ country }) => {
   return (
     <FlexContainer>
-      <CardContainer>Card</CardContainer>
+      <CardContainer>
+        <FlagImage
+          src={country.flags.svg}
+          alt={`${
+            typeof country.name === "string"
+              ? country.name
+              : country.name.common
+          } flag`}
+        />
+        <CountryDetails>
+          <CountryName>
+            {typeof country.name === "string"
+              ? country.name
+              : country.name.common}
+          </CountryName>
+          <CountryInfo>
+            <p>Population: {country.population}</p>
+            <p>Region: {country.region}</p>
+            <p>Capital: {country.capital}</p>
+          </CountryInfo>
+        </CountryDetails>
+      </CardContainer>
     </FlexContainer>
   );
 };

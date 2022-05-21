@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { Container } from "../../components/common/Container";
 
-const CountriesListContainer = styled(Container)`
+export const CountriesListContainer = styled(Container)`
   padding: 0 8%;
   display: flex;
   flex-wrap: wrap;
@@ -9,4 +9,6 @@ const CountriesListContainer = styled(Container)`
   margin: 0 auto;
 `;
 
-export { CountriesListContainer };
+export const EmptyStateContainer = styled.div`
+  padding: 2.5%;
+`;

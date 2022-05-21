@@ -5,8 +5,8 @@ import { getCountries } from "../../redux/actions/countriesActions";
 import { CountriesListContainer } from "./CountriesList.styled";
 
 const CountriesList = () => {
-  const countries = useSelector((state) => {
-    return state.countriesList.countries;
+  const { countries, loading, error } = useSelector((state) => {
+    return state.countriesList;
   });
   const dispatch = useDispatch();
 
@@ -16,11 +16,28 @@ const CountriesList = () => {
 
   return (
     <CountriesListContainer>
-      {countries &&
-        countries.length > 0 &&
+      {countries && !loading && countries.length > 0 ? (
         countries.map((country) => {
-          return <Card />;
-        })}
+          return (
+            <Card
+              key={
+                typeof country.name === "string"
+                  ? country.name
+                  : country.name.common
+              }
+              country={country}
+            />
+          );
+        })
+      ) : (
+        <div style={{ padding: "2.5%" }}>
+          {loading ? (
+            <div>add Loader here...</div>
+          ) : (
+            <p>{error || "No countries available, my friend"}!</p>
+          )}
+        </div>
+      )}
     </CountriesListContainer>
   );
 };
