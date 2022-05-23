@@ -27,6 +27,7 @@ export const SelectBox = styled.div`
   align-items: center;
 
   cursor: pointer;
+  box-sizing: border-box;
 `;
 
 export const ArrowIcon = styled.img`
@@ -64,4 +65,5 @@ export const OptionItem = styled.option`
     background-color: ${(props) =>
       props.selectedOption ? "#bfbfbf" : "#e4e4e4"};
   }
+  box-sizing: border-box;
 `;
