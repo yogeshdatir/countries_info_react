@@ -18,7 +18,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <AppContainer currentTheme={currentTheme}>
+    <AppContainer currentTheme={currentTheme} data-testid="App">
       <Navbar />
       <Header />
       <Routes>
