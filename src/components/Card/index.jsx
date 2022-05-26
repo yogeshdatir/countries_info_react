@@ -10,7 +10,11 @@ import {
 
 const Card = ({ country }) => {
   return (
-    <FlexContainer>
+    <FlexContainer
+      data-testid={`countryCard-${
+        typeof country.name === "string" ? country.name : country.name.common
+      }`}
+    >
       <CardContainer>
         <FlagImage
           src={country.flags.svg}

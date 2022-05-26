@@ -31,7 +31,7 @@ const Searchbar = () => {
   };
 
   return (
-    <SearchInputContainer>
+    <SearchInputContainer data-testid="searchbar">
       <label htmlFor="searchInput">
         <SearchIcon src={SearchSVG} />
       </label>
