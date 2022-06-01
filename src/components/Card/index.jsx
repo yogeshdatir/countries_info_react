@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import {
   CardContainer,
   CountryDetails,
@@ -9,9 +10,12 @@ import {
 } from "./Card.styled";
 
 const Card = ({ country }) => {
+  const { currentTheme } = useSelector((state) => {
+    return state.theme;
+  });
   return (
     <FlexContainer>
-      <CardContainer>
+      <CardContainer currentTheme={currentTheme}>
         <FlagImage
           src={country.flags.svg}
           alt={`${

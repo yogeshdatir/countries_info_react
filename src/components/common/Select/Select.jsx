@@ -6,11 +6,16 @@ import {
   OptionsBox,
   SelectBox,
 } from "./Select.styled";
-import ArrowPng from "../../../assets/arrow-down.png";
+import ArrowPng from "../../../assets/icons8-expand-arrow-50 dark.png";
+import ArrowPngLight from "../../../assets/icons8-expand-arrow-50.png";
 import useClickOutside from "../../../hooks/useClickOutside";
+import { useSelector } from "react-redux";
 
 const Select = ({ selectedRegion, setSelectedRegion, options }) => {
   const [isActive, setIsActive] = useState(false);
+  const { currentTheme } = useSelector((state) => {
+    return state.theme;
+  });
 
   const wrapperRef = useRef(null);
   useClickOutside(wrapperRef, () => {
@@ -22,12 +27,20 @@ const Select = ({ selectedRegion, setSelectedRegion, options }) => {
   };
 
   return (
-    <Dropdown ref={wrapperRef} onClick={handleDropdownClick}>
-      <SelectBox>
+    <Dropdown
+      ref={wrapperRef}
+      onClick={handleDropdownClick}
+      currentTheme={currentTheme}
+    >
+      <SelectBox currentTheme={currentTheme}>
         {selectedRegion}
-        <ArrowIcon isActive={isActive} src={ArrowPng} alt="expand" />
+        <ArrowIcon
+          isActive={isActive}
+          src={currentTheme === "light" ? ArrowPng : ArrowPngLight}
+          alt="expand"
+        />
       </SelectBox>
-      <OptionsBox isActive={isActive}>
+      <OptionsBox isActive={isActive} currentTheme={currentTheme}>
         {options?.map(({ value, displayValue }) => {
           return (
             <OptionItem

@@ -5,8 +5,9 @@ import {
   SearchInputContainer,
 } from "./Searchbar.styled";
 import SearchSVG from "../../assets/icons8-search.svg";
+import SearchSVGNight from "../../assets/icons8-search light.svg";
 import useDebounce from "../../hooks/useDebounce";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   getCountries,
   getSearchCountries,
@@ -15,6 +16,10 @@ import {
 const Searchbar = () => {
   const [searchTerm, setSearchTerm] = useState(undefined);
   const debouncedSearchTerm = useDebounce(searchTerm, 750);
+
+  const { currentTheme } = useSelector((state) => {
+    return state.theme;
+  });
 
   const dispatch = useDispatch();
 
@@ -31,9 +36,11 @@ const Searchbar = () => {
   };
 
   return (
-    <SearchInputContainer>
+    <SearchInputContainer currentTheme={currentTheme}>
       <label htmlFor="searchInput">
-        <SearchIcon src={SearchSVG} />
+        <SearchIcon
+          src={currentTheme === "light" ? SearchSVG : SearchSVGNight}
+        />
       </label>
       <SearchInput
         id="searchInput"

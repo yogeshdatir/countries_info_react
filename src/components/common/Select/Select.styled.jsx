@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { Themes } from "../../../constants/themes";
 
 export const Dropdown = styled.div`
   width: 200px;
@@ -11,13 +12,17 @@ export const Dropdown = styled.div`
   line-height: 20px;
   /* identical to box height, or 143% */
 
-  color: #111517;
+  color: ${(props) => Themes[props.currentTheme].textColor};
   user-select: none;
+
+  @media (max-width: 480px) {
+    margin-top: 20px;
+  }
 `;
 
 export const SelectBox = styled.div`
   min-height: 56px;
-  background: #ffffff;
+  background: ${(props) => Themes[props.currentTheme].elementsBackgroundColor};
   box-shadow: 0px 2px 9px rgba(0, 0, 0, 0.0532439);
   border-radius: 5px;
   padding: 18px 24px;
@@ -38,7 +43,7 @@ export const ArrowIcon = styled.img`
 `;
 
 export const OptionsBox = styled.div`
-  background: #ffffff;
+  background: ${(props) => Themes[props.currentTheme].elementsBackgroundColor};
   box-shadow: 0px 2px 9px rgba(0, 0, 0, 0.0532439);
   border-radius: 5px;
 

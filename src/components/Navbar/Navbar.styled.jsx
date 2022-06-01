@@ -1,9 +1,11 @@
 import styled from "@emotion/styled";
+import { Themes } from "../../constants/themes";
 import { Container } from "../common/Container";
 
 const NavbarContainer = styled(Container)`
   height: 80px;
-  background-color: #fff;
+  transition: all 0.2s ease-in;
+  background: ${(props) => Themes[props.currentTheme].elementsBackgroundColor};
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0562443);
 `;
 

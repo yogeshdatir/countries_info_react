@@ -6,6 +6,10 @@ const HeaderContainer = styled(Container)`
   justify-content: space-between;
   padding-top: 48px;
   padding-bottom: 12px;
+  @media (max-width: 480px) {
+    flex-direction: column;
+    padding-bottom: 40px;
+  }
 `;
 
 export { HeaderContainer };
