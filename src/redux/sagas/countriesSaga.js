@@ -9,7 +9,7 @@ import {
 import { Messages } from "../constants/messages";
 
 const getCountries = () => {
-  return axios.get("https://restcountries.com/v2/all");
+  return axios.get("https://restcountries.com/v3.1/all");
 };
 
 // TODO: Error handling for different kinds of errors.

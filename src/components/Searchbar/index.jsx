@@ -36,7 +36,7 @@ const Searchbar = () => {
   };
 
   return (
-    <SearchInputContainer currentTheme={currentTheme}>
+    <SearchInputContainer data-testid="searchbar" currentTheme={currentTheme}>
       <label htmlFor="searchInput">
         <SearchIcon
           src={currentTheme === "light" ? SearchSVG : SearchSVGNight}

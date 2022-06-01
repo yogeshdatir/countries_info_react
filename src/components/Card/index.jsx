@@ -14,7 +14,11 @@ const Card = ({ country }) => {
     return state.theme;
   });
   return (
-    <FlexContainer>
+    <FlexContainer
+      data-testid={`countryCard-${
+        typeof country.name === "string" ? country.name : country.name.common
+      }`}
+    >
       <CardContainer currentTheme={currentTheme}>
         <FlagImage
           src={country.flags.svg}

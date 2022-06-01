@@ -15,7 +15,7 @@ const CountriesList = () => {
   }, [dispatch]);
 
   return (
-    <CountriesListContainer>
+    <CountriesListContainer data-testid="countriesList">
       {countries && !loading && countries.length > 0 ? (
         countries.map((country) => {
           return (
