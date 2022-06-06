@@ -1,7 +1,7 @@
 * {
   margin: 0;
   box-sizing: border-box;
-  transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in, color 0s;
 }
 
 body {

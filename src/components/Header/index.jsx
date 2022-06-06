@@ -5,7 +5,7 @@ import Select from "../common/Select/Select";
 import Searchbar from "../Searchbar";
 import { HeaderContainer } from "./Header.styled";
 
-const regionOptions = [
+export const regionOptions = [
   { value: "Africa", displayValue: "Africa" },
   { value: "America", displayValue: "America" },
   { value: "Asia", displayValue: "Asia" },

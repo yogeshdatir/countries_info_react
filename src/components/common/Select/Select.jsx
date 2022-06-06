@@ -28,19 +28,24 @@ const Select = ({ selectedRegion, setSelectedRegion, options }) => {
 
   return (
     <Dropdown
+      data-testid="select-container"
       ref={wrapperRef}
       onClick={handleDropdownClick}
       currentTheme={currentTheme}
     >
-      <SelectBox currentTheme={currentTheme}>
-        {selectedRegion}
+      <SelectBox currentTheme={currentTheme} data-testid="select-field">
+        <span>{selectedRegion}</span>
         <ArrowIcon
           isActive={isActive}
           src={currentTheme === "light" ? ArrowPng : ArrowPngLight}
           alt="expand"
         />
       </SelectBox>
-      <OptionsBox isActive={isActive} currentTheme={currentTheme}>
+      <OptionsBox
+        data-testid="options-box"
+        isActive={isActive}
+        currentTheme={currentTheme}
+      >
         {options?.map(({ value, displayValue }) => {
           return (
             <OptionItem

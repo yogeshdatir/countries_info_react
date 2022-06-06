@@ -13,3 +13,9 @@ export const allCountriesHandler = [
     return res(ctx.status(200), ctx.json(searchByName));
   }),
 ];
+
+export const regionFilterHandler = [
+  rest.get("https://restcountries.com/v3.1/region/Asia", (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(searchByName));
+  }),
+];

@@ -9,31 +9,22 @@ import {
   FlexContainer,
 } from "./Card.styled";
 
-const Card = ({ country }) => {
+const Card = ({ country, handleClick }) => {
   const { currentTheme } = useSelector((state) => {
     return state.theme;
   });
   return (
     <FlexContainer
-      data-testid={`countryCard-${
-        typeof country.name === "string" ? country.name : country.name.common
-      }`}
+      data-testid={`countryCard-${country.name.common}`}
+      onClick={() => handleClick(country.name.official)}
     >
       <CardContainer currentTheme={currentTheme}>
         <FlagImage
           src={country.flags.svg}
-          alt={`${
-            typeof country.name === "string"
-              ? country.name
-              : country.name.common
-          } flag`}
+          alt={`${country.name.common} flag`}
         />
         <CountryDetails>
-          <CountryName>
-            {typeof country.name === "string"
-              ? country.name
-              : country.name.common}
-          </CountryName>
+          <CountryName>{country.name.common}</CountryName>
           <CountryInfo>
             <p>Population: {country.population}</p>
             <p>Region: {country.region}</p>

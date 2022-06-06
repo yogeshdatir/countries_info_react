@@ -5,6 +5,7 @@ export const FlexContainer = styled.div`
   padding: 2.5%;
   flex-basis: 25%;
   box-sizing: border-box;
+  cursor: pointer;
 
   @media (max-width: 480px) {
     flex-basis: 100%;
@@ -22,6 +23,7 @@ export const FlexContainer = styled.div`
 export const CardContainer = styled.div`
   background: ${(props) => Themes[props.currentTheme].elementsBackgroundColor};
   width: 100%;
+  height: 100%;
   box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0.0294384);
   border-radius: 5px;
   overflow: hidden;
