@@ -5,10 +5,10 @@ export const FlexContainer = styled.div`
   padding: 2.5%;
   flex-basis: 25%;
   box-sizing: border-box;
-  cursor: pointer;
 
   @media (max-width: 480px) {
     flex-basis: 100%;
+    padding: 1.25rem 2.5%;
   }
 
   @media (min-width: 481px) and (max-width: 900px) {
@@ -27,6 +27,7 @@ export const CardContainer = styled.div`
   box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0.0294384);
   border-radius: 5px;
   overflow: hidden;
+  cursor: pointer;
 `;
 
 export const FlagImage = styled.img`
