@@ -14,6 +14,7 @@ import {
   FlagLarge,
   BorderCountry,
   BorderCountriesContainer,
+  BorderAttributeRow,
 } from "./CountryDetailsCard.styled";
 
 function CountryDetailsCard() {
@@ -82,7 +83,9 @@ function CountryDetailsCard() {
     });
 
     return borderCountriesOfficialNames.map((name) => (
-      <BorderCountry currentTheme={currentTheme}>{name}</BorderCountry>
+      <BorderCountry key={name} currentTheme={currentTheme}>
+        {name}
+      </BorderCountry>
     ));
   };
 
@@ -146,8 +149,8 @@ function CountryDetailsCard() {
             <AttributeRow>
               <AttributeTitle>Top Level Domain: </AttributeTitle>
               <AttributeValue>
-                {selectedCountry.tld.map((tld) => (
-                  <span>{tld}</span>
+                {countryForDetails.tld.map((tld) => (
+                  <span key={tld}>{tld}</span>
                 ))}
               </AttributeValue>
             </AttributeRow>
@@ -161,12 +164,12 @@ function CountryDetailsCard() {
             </AttributeRow>
           </AttributesSectionRight>
         </CountryAttributes>
-        <AttributeRow>
+        <BorderAttributeRow>
           <AttributeTitle>Border Countries: </AttributeTitle>
           <BorderCountriesContainer>
             {getBorderCountries()}
           </BorderCountriesContainer>
-        </AttributeRow>
+        </BorderAttributeRow>
       </Details>
     </DetailsCardContainer>
   ) : (

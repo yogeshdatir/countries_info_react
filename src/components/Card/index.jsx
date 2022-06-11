@@ -14,11 +14,11 @@ const Card = ({ country, handleClick }) => {
     return state.theme;
   });
   return (
-    <FlexContainer
-      data-testid={`countryCard-${country.name.common}`}
-      onClick={() => handleClick(country.name.official, country.cca3)}
-    >
-      <CardContainer currentTheme={currentTheme}>
+    <FlexContainer data-testid={`countryCard-${country.name.common}`}>
+      <CardContainer
+        currentTheme={currentTheme}
+        onClick={() => handleClick(country.name.official)}
+      >
         <FlagImage
           src={country.flags.svg}
           alt={`${country.name.common} flag`}

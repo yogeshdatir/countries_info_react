@@ -4,6 +4,10 @@ import { Themes } from "../../constants/themes";
 
 export const DetailsContainer = styled(Container)`
   padding-top: 80px;
+
+  @media (max-width: 900px) {
+    padding-top: 2.5rem;
+  }
 `;
 
 export const BackButton = styled.button`
@@ -18,6 +22,10 @@ export const BackButton = styled.button`
   cursor: pointer;
   box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.293139);
   border-radius: 6px;
+
+  @media (max-width: 900px) {
+    margin-bottom: 5vh;
+  }
 `;
 
 export const BackIcon = styled.img`
