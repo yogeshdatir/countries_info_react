@@ -3,10 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Card from "../../components/Card";
 import Header from "../../components/Header";
-import {
-  getCountries,
-  selectCountryForDetails,
-} from "../../redux/actions/countriesActions";
+import { getCountries } from "../../redux/actions/countriesActions";
 import { CountriesListContainer } from "./CountriesList.styled";
 
 const CountriesList = () => {
