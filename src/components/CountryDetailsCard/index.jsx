@@ -1,5 +1,7 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import {
   AttributeTitle,
   AttributeRow,
@@ -16,15 +18,63 @@ import {
 
 function CountryDetailsCard() {
   const {
-    countriesList: { countryForDetails, countries },
+    countriesList: { countries },
     theme: { currentTheme },
   } = useSelector((state) => {
     return state;
   });
 
+  const { id } = useParams();
+  const [selectedCountry, setSelectedCountry] = useState(null);
+  const [borderCountries, setBorderCountries] = useState([]);
+
+  useEffect(() => {
+    if (id) {
+      (async () => {
+        const res = await getCountriesWithCCA3(countries, id);
+        setSelectedCountry(res[0]);
+        if (!countries.length) {
+          const borderCountriesRes = await getCountriesWithCCA3(
+            [],
+            "",
+            res[0].borders
+          );
+          setBorderCountries([...borderCountriesRes]);
+        }
+      })();
+    }
+  }, [countries, id]);
+
+  const getCountriesWithCCA3 = async (list, cca3, listOfBordersCCA3) => {
+    if (list.length) {
+      return list.filter((country) => country.cca3 === cca3);
+    }
+    let apiString = ``;
+    if (cca3)
+      apiString = `https://restcountries.com/v3.1/alpha?codes=${cca3}, ${
+        listOfBordersCCA3 && listOfBordersCCA3.toString()
+      }`;
+    else
+      apiString = `https://restcountries.com/v3.1/alpha?codes=${
+        listOfBordersCCA3 && listOfBordersCCA3.toString()
+      }`;
+    try {
+      const countryResult = await axios.get(apiString);
+      return countryResult.data;
+    } catch (error) {
+      console.error("error while getting the country...", error);
+      return null;
+    }
+  };
+
   const getBorderCountries = () => {
-    if (!countryForDetails.borders) return <span>None</span>;
-    const borderCountriesCCA3 = [...countryForDetails.borders];
+    if (!selectedCountry.borders) return <span>None</span>;
+    if (!countries.length) {
+      return borderCountries.map(({ name: { common } }) => (
+        <BorderCountry currentTheme={currentTheme}>{common}</BorderCountry>
+      ));
+    }
+    const borderCountriesCCA3 = [...selectedCountry.borders];
     let borderCountriesOfficialNames = [];
     countries.forEach((country) => {
       if (borderCountriesCCA3.includes(country.cca3))
@@ -37,66 +87,66 @@ function CountryDetailsCard() {
   };
 
   const renderCurrencies = () => {
-    if (!countryForDetails.currencies) return <span>None</span>;
-    const keys = Object.keys(countryForDetails.currencies);
+    if (!selectedCountry.currencies) return <span>None</span>;
+    const keys = Object.keys(selectedCountry.currencies);
     return keys
       .map((key) => {
-        return countryForDetails.currencies[key].name;
+        return selectedCountry.currencies[key].name;
       })
       .join(", ");
   };
   const renderLanguages = () => {
-    if (!countryForDetails.languages) return <span>None</span>;
-    const keys = Object.keys(countryForDetails.languages);
+    if (!selectedCountry.languages) return <span>None</span>;
+    const keys = Object.keys(selectedCountry.languages);
     return keys
       .map((key) => {
-        return countryForDetails.languages[key];
+        return selectedCountry.languages[key];
       })
       .join(", ");
   };
 
-  return (
+  return selectedCountry?.name ? (
     <DetailsCardContainer>
       <FlagLarge
-        src={countryForDetails.flags.svg}
-        alt={`${countryForDetails.name.official} Flag`}
+        src={selectedCountry.flags.svg}
+        alt={`${selectedCountry.name.official} Flag`}
       />
       <Details>
-        <h1>{countryForDetails.name.official}</h1>
+        <h1>{selectedCountry.name.official}</h1>
         <CountryAttributes>
           <AttributesSectionLeft>
             <AttributeRow>
               <AttributeTitle>Native Name: </AttributeTitle>
               <AttributeValue>
                 {
-                  countryForDetails.name.nativeName[
-                    Object.keys(countryForDetails.languages)[0]
+                  selectedCountry.name.nativeName[
+                    Object.keys(selectedCountry.languages)[0]
                   ].official
                 }
               </AttributeValue>
             </AttributeRow>
             <AttributeRow>
               <AttributeTitle>Population:</AttributeTitle>
-              <AttributeValue>{countryForDetails.population}</AttributeValue>
+              <AttributeValue>{selectedCountry.population}</AttributeValue>
             </AttributeRow>
             <AttributeRow>
               <AttributeTitle>Region:</AttributeTitle>
-              <AttributeValue> {countryForDetails.region}</AttributeValue>
+              <AttributeValue> {selectedCountry.region}</AttributeValue>
             </AttributeRow>
             <AttributeRow>
               <AttributeTitle>Sub Region: </AttributeTitle>
-              <AttributeValue>{countryForDetails.subregion}</AttributeValue>
+              <AttributeValue>{selectedCountry.subregion}</AttributeValue>
             </AttributeRow>
             <AttributeRow>
               <AttributeTitle>Capital: </AttributeTitle>
-              <AttributeValue>{countryForDetails.capital}</AttributeValue>
+              <AttributeValue>{selectedCountry.capital}</AttributeValue>
             </AttributeRow>
           </AttributesSectionLeft>
           <AttributesSectionRight>
             <AttributeRow>
               <AttributeTitle>Top Level Domain: </AttributeTitle>
               <AttributeValue>
-                {countryForDetails.tld.map((tld) => (
+                {selectedCountry.tld.map((tld) => (
                   <span>{tld}</span>
                 ))}
               </AttributeValue>
@@ -119,6 +169,8 @@ function CountryDetailsCard() {
         </AttributeRow>
       </Details>
     </DetailsCardContainer>
+  ) : (
+    <div>loading</div>
   );
 }
 

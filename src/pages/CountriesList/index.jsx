@@ -21,9 +21,9 @@ const CountriesList = () => {
     dispatch(getCountries());
   }, [dispatch]);
 
-  const handleClick = (name) => {
+  const handleClick = (name, cca3) => {
     dispatch(selectCountryForDetails(name));
-    navigate("/details");
+    navigate(`/${cca3}`);
   };
 
   return (
