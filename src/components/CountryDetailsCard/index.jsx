@@ -72,7 +72,9 @@ function CountryDetailsCard() {
     if (!selectedCountry.borders) return <span>None</span>;
     if (!countries.length) {
       return borderCountries.map(({ name: { common } }) => (
-        <BorderCountry currentTheme={currentTheme}>{common}</BorderCountry>
+        <BorderCountry key={common} currentTheme={currentTheme}>
+          {common}
+        </BorderCountry>
       ));
     }
     const borderCountriesCCA3 = [...selectedCountry.borders];
@@ -115,7 +117,7 @@ function CountryDetailsCard() {
         alt={`${selectedCountry.name.official} Flag`}
       />
       <Details>
-        <h1>{selectedCountry.name.official}</h1>
+        <h1>{selectedCountry.name.common}</h1>
         <CountryAttributes>
           <AttributesSectionLeft>
             <AttributeRow>
@@ -149,7 +151,7 @@ function CountryDetailsCard() {
             <AttributeRow>
               <AttributeTitle>Top Level Domain: </AttributeTitle>
               <AttributeValue>
-                {countryForDetails.tld.map((tld) => (
+                {selectedCountry.tld.map((tld) => (
                   <span key={tld}>{tld}</span>
                 ))}
               </AttributeValue>

@@ -68,11 +68,3 @@ export const setTheme = (themeName) => {
     payload: themeName,
   };
 };
-
-
-export const selectCountryForDetails = (officialName) => {
-  return {
-    type: ActionTypes.GET_COUNTRY_DETAILS,
-    payload: officialName,
-  };
-};

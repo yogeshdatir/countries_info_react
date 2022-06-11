@@ -30,12 +30,6 @@ const countriesReducer = (
     case ActionTypes.FILTER_COUNTRIES_FAIL: {
       return { ...state, error: action.payload };
     }
-    case ActionTypes.GET_COUNTRY_DETAILS: {
-      const countryForDetails = state.countries.filter(
-        (country) => country.name.official === action.payload
-      )[0];
-      return { ...state, countryForDetails };
-    }
     default: {
       return state;
     }

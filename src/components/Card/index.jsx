@@ -17,7 +17,7 @@ const Card = ({ country, handleClick }) => {
     <FlexContainer data-testid={`countryCard-${country.name.common}`}>
       <CardContainer
         currentTheme={currentTheme}
-        onClick={() => handleClick(country.name.official)}
+        onClick={() => handleClick(country.cca3)}
       >
         <FlagImage
           src={country.flags.svg}

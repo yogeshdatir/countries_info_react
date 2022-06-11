@@ -15,6 +15,7 @@ export const DetailsCardContainer = styled.div`
 
 export const FlagLarge = styled.img`
   width: 45%;
+  max-height: 50vh;
 
   @media (max-width: 900px) {
     width: 100%;
@@ -26,10 +27,10 @@ export const Details = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  max-width: 45%;
+  width: 45%;
 
   @media (max-width: 900px) {
-    max-width: 100%;
+    width: 100%;
   }
 `;
 
