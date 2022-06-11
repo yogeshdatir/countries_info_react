@@ -1,39 +1,58 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import {
+  AttributeTitle,
+  AttributeRow,
+  AttributesSectionLeft,
+  AttributesSectionRight,
+  AttributeValue,
   CountryAttributes,
   Details,
   DetailsCardContainer,
   FlagLarge,
+  BorderCountry,
+  BorderCountriesContainer,
 } from "./CountryDetailsCard.styled";
 
 function CountryDetailsCard() {
-  const { countryForDetails, countries } = useSelector((state) => {
-    return state.countriesList;
+  const {
+    countriesList: { countryForDetails, countries },
+    theme: { currentTheme },
+  } = useSelector((state) => {
+    return state;
   });
 
   const getBorderCountries = () => {
+    if (!countryForDetails.borders) return <span>None</span>;
     const borderCountriesCCA3 = [...countryForDetails.borders];
     let borderCountriesOfficialNames = [];
     countries.forEach((country) => {
       if (borderCountriesCCA3.includes(country.cca3))
-        borderCountriesOfficialNames.push(country.name.official);
+        borderCountriesOfficialNames.push(country.name.common);
     });
 
-    return borderCountriesOfficialNames.map((name) => <span>{name}</span>);
+    return borderCountriesOfficialNames.map((name) => (
+      <BorderCountry currentTheme={currentTheme}>{name}</BorderCountry>
+    ));
   };
 
   const renderCurrencies = () => {
+    if (!countryForDetails.currencies) return <span>None</span>;
     const keys = Object.keys(countryForDetails.currencies);
-    return keys.map((key) => {
-      return <span>{countryForDetails.currencies[key].name}</span>;
-    });
+    return keys
+      .map((key) => {
+        return countryForDetails.currencies[key].name;
+      })
+      .join(", ");
   };
   const renderLanguages = () => {
+    if (!countryForDetails.languages) return <span>None</span>;
     const keys = Object.keys(countryForDetails.languages);
-    return keys.map((key) => {
-      return <span>{countryForDetails.languages[key]}</span>;
-    });
+    return keys
+      .map((key) => {
+        return countryForDetails.languages[key];
+      })
+      .join(", ");
   };
 
   return (
@@ -45,27 +64,59 @@ function CountryDetailsCard() {
       <Details>
         <h1>{countryForDetails.name.official}</h1>
         <CountryAttributes>
-          <div>
-            {/* <p>Native Name: {countryForDetails.name.nativeName.spa.official}</p> */}
-            <p>Population: {countryForDetails.population}</p>
-            <p>Region: {countryForDetails.region}</p>
-            <p>Sub Region: {countryForDetails.subregion}</p>
-            <p>Capital: {countryForDetails.capital}</p>
-          </div>
-          <div>
-            <p>
-              Top Level Domain:{" "}
-              {countryForDetails.tld.map((tld) => (
-                <span>{tld}</span>
-              ))}
-            </p>
-            <p>Currencies: {renderCurrencies()}</p>
-            <p>Languages: {renderLanguages()}</p>
-          </div>
+          <AttributesSectionLeft>
+            <AttributeRow>
+              <AttributeTitle>Native Name: </AttributeTitle>
+              <AttributeValue>
+                {
+                  countryForDetails.name.nativeName[
+                    Object.keys(countryForDetails.languages)[0]
+                  ].official
+                }
+              </AttributeValue>
+            </AttributeRow>
+            <AttributeRow>
+              <AttributeTitle>Population:</AttributeTitle>
+              <AttributeValue>{countryForDetails.population}</AttributeValue>
+            </AttributeRow>
+            <AttributeRow>
+              <AttributeTitle>Region:</AttributeTitle>
+              <AttributeValue> {countryForDetails.region}</AttributeValue>
+            </AttributeRow>
+            <AttributeRow>
+              <AttributeTitle>Sub Region: </AttributeTitle>
+              <AttributeValue>{countryForDetails.subregion}</AttributeValue>
+            </AttributeRow>
+            <AttributeRow>
+              <AttributeTitle>Capital: </AttributeTitle>
+              <AttributeValue>{countryForDetails.capital}</AttributeValue>
+            </AttributeRow>
+          </AttributesSectionLeft>
+          <AttributesSectionRight>
+            <AttributeRow>
+              <AttributeTitle>Top Level Domain: </AttributeTitle>
+              <AttributeValue>
+                {countryForDetails.tld.map((tld) => (
+                  <span>{tld}</span>
+                ))}
+              </AttributeValue>
+            </AttributeRow>
+            <AttributeRow>
+              <AttributeTitle>Currencies: </AttributeTitle>
+              <AttributeValue>{renderCurrencies()}</AttributeValue>
+            </AttributeRow>
+            <AttributeRow>
+              <AttributeTitle>Languages: </AttributeTitle>
+              <AttributeValue>{renderLanguages()}</AttributeValue>
+            </AttributeRow>
+          </AttributesSectionRight>
         </CountryAttributes>
-        <div>
-          <span>Border Countries: </span> {getBorderCountries()}
-        </div>
+        <AttributeRow>
+          <AttributeTitle>Border Countries: </AttributeTitle>
+          <BorderCountriesContainer>
+            {getBorderCountries()}
+          </BorderCountriesContainer>
+        </AttributeRow>
       </Details>
     </DetailsCardContainer>
   );
