@@ -6,16 +6,17 @@ export const DetailsCardContainer = styled.div`
   justify-content: space-between;
 
   height: 100%;
+  padding-bottom: 4rem;
 
   @media (max-width: 900px) {
     flex-direction: column;
-    padding-bottom: 4rem;
   }
 `;
 
 export const FlagLarge = styled.img`
   width: 45%;
   max-height: 50vh;
+  border-radius: 10px;
 
   @media (max-width: 900px) {
     width: 100%;
@@ -37,6 +38,7 @@ export const Details = styled.div`
 export const CountryAttributes = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-top: 2.5rem;
 
   @media (max-width: 900px) {
     flex-direction: column;
@@ -68,8 +70,10 @@ export const AttributeRow = styled.div`
 `;
 
 export const BorderAttributeRow = styled(AttributeRow)`
+  margin-top: 4rem;
   @media (max-width: 900px) {
     flex-direction: column;
+    margin-top: 2rem;
   }
 `;
 
@@ -82,6 +86,7 @@ export const AttributeTitle = styled.span`
 
 export const AttributeValue = styled.span`
   flex: 1;
+  font-weight: 400;
 `;
 
 export const BorderCountriesContainer = styled(AttributeValue)`
