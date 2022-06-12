@@ -27,7 +27,7 @@ const Card = ({ country, handleClick }) => {
           <CountryName>{country.name.common}</CountryName>
           <CountryInfo>
             <p>
-              <span>Population:</span> {country.population}
+              <span>Population:</span> {country.population.toLocaleString()}
             </p>
             <p>
               <span>Region:</span> {country.region}
