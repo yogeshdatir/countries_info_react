@@ -18,9 +18,12 @@ export const Dropdown = styled.div`
   }
 `;
 
-export const SelectBox = styled.div`
+export const SelectBox = styled.button`
   min-height: 56px;
-  background: ${(props) => Themes[props.currentTheme].elementsBackgroundColor};
+  width: 100%;
+  border: none;
+  background-color: ${(props) =>
+    Themes[props.currentTheme].elementsBackgroundColor} !important;
   box-shadow: 0px 2px 9px rgba(0, 0, 0, 0.0532439);
   border-radius: 5px;
   padding: 18px 24px;
@@ -40,7 +43,7 @@ export const ArrowIcon = styled.img`
   transform: ${(props) => (props.isActive ? "rotate(180deg)" : "rotate(0)")};
 `;
 
-export const OptionsBox = styled.div`
+export const OptionsBox = styled.ul`
   background: ${(props) => Themes[props.currentTheme].elementsBackgroundColor};
   box-shadow: 0px 2px 9px rgba(0, 0, 0, 0.0532439);
   border-radius: 5px;
@@ -55,7 +58,7 @@ export const OptionsBox = styled.div`
   padding: ${(props) => (props.isActive ? "10px 0" : 0)};
 `;
 
-export const OptionItem = styled.div`
+export const OptionItem = styled.li`
   padding: 4px 24px;
   width: 100%;
   text-align: left;

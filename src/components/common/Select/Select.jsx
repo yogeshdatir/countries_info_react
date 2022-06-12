@@ -26,16 +26,36 @@ const Select = ({ selectedRegion, setSelectedRegion, options }) => {
     setIsActive(!isActive);
   };
 
-  // TODO: Add keyboard access to the select dropdown.
-  // * Notes: link: https://dequeuniversity.com/rules/axe/4.3/scrollable-region-focusable?application=axeAPI
+  const handleKeyDown = (value) => (e) => {
+    switch (e.key) {
+      case " ":
+      case "SpaceBar":
+      case "Enter":
+        e.preventDefault();
+        setSelectedRegion(value);
+        setIsActive(false);
+        break;
+      default:
+        break;
+    }
+  };
+
+  // TODO: Arrow keys should navigate through select dropdown.
+
   return (
     <Dropdown
       data-testid="select-container"
       ref={wrapperRef}
-      onClick={handleDropdownClick}
       currentTheme={currentTheme}
     >
-      <SelectBox currentTheme={currentTheme} data-testid="select-field">
+      <SelectBox
+        type="button"
+        onClick={handleDropdownClick}
+        aria-haspopup="listbox"
+        aria-expanded={isActive}
+        currentTheme={currentTheme}
+        data-testid="select-field"
+      >
         <span>{selectedRegion}</span>
         <ArrowIcon
           isActive={isActive}
@@ -44,6 +64,9 @@ const Select = ({ selectedRegion, setSelectedRegion, options }) => {
         />
       </SelectBox>
       <OptionsBox
+        tabIndex={-1}
+        role="listbox"
+        aria-activedescendant={selectedRegion}
         data-testid="options-box"
         isActive={isActive}
         currentTheme={currentTheme}
@@ -52,7 +75,12 @@ const Select = ({ selectedRegion, setSelectedRegion, options }) => {
           return (
             <OptionItem
               key={value}
+              tabIndex={0}
+              id={value}
+              role="option"
+              aria-selected={selectedRegion === value}
               onClick={() => setSelectedRegion(value)}
+              onKeyDown={handleKeyDown(value)}
               value={value}
               selectedOption={value === selectedRegion}
             >
