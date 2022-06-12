@@ -26,9 +26,15 @@ const Card = ({ country, handleClick }) => {
         <CountryDetails>
           <CountryName>{country.name.common}</CountryName>
           <CountryInfo>
-            <p>Population: {country.population}</p>
-            <p>Region: {country.region}</p>
-            <p>Capital: {country.capital}</p>
+            <p>
+              <span>Population:</span> {country.population}
+            </p>
+            <p>
+              <span>Region:</span> {country.region}
+            </p>
+            <p>
+              <span>Capital:</span> {country.capital}
+            </p>
           </CountryInfo>
         </CountryDetails>
       </CardContainer>

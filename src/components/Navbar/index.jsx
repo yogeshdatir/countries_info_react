@@ -10,7 +10,7 @@ const Navbar = () => {
   return (
     <NavbarContainer currentTheme={currentTheme}>
       <Nav>
-        <span>Where in the world?</span>
+        <h1>Where in the world?</h1>
         <DarkModeButton />
       </Nav>
     </NavbarContainer>

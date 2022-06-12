@@ -8,6 +8,7 @@ const HeaderContainer = styled(Container)`
   padding-bottom: 12px;
   @media (max-width: 480px) {
     flex-direction: column;
+    padding-top: 48px;
     padding-bottom: 40px;
   }
 `;

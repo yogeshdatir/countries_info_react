@@ -40,8 +40,19 @@ export const CountryDetails = styled.div`
   padding: 24px;
 `;
 
-export const CountryName = styled.p``;
+export const CountryName = styled.h2`
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 26px;
+`;
 
 export const CountryInfo = styled.div`
   padding-top: 16px;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 16px;
+
+  span {
+    font-weight: 600;
+  }
 `;

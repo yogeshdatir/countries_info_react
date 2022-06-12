@@ -12,6 +12,10 @@ export const SearchInputContainer = styled.div`
   align-items: center;
   padding-left: 32px;
 
+  label {
+    height: 18px;
+  }
+
   @media (max-width: 480px) {
     width: auto;
   }
@@ -19,6 +23,7 @@ export const SearchInputContainer = styled.div`
 
 export const SearchIcon = styled.img`
   width: 18px;
+  height: 18px;
 `;
 
 export const SearchInput = styled.input`
@@ -27,4 +32,9 @@ export const SearchInput = styled.input`
   border: none;
   padding: 0 24px;
   outline: none;
+
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
 `;

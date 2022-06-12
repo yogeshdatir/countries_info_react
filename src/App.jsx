@@ -20,10 +20,12 @@ function App() {
   return (
     <AppContainer currentTheme={currentTheme} data-testid="App">
       <Navbar />
-      <Routes>
-        <Route path="/" element={<CountriesList />} />
-        <Route path="/:id" element={<CountryDetails />} />
-      </Routes>
+      <main>
+        <Routes>
+          <Route path="/" element={<CountriesList />} />
+          <Route path="/:id" element={<CountryDetails />} />
+        </Routes>
+      </main>
     </AppContainer>
   );
 }

@@ -5,8 +5,6 @@ export const Dropdown = styled.div`
   width: 200px;
   position: relative;
 
-  font-family: "Nunito", sans-serif;
-  font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 20px;
@@ -57,7 +55,7 @@ export const OptionsBox = styled.div`
   padding: ${(props) => (props.isActive ? "10px 0" : 0)};
 `;
 
-export const OptionItem = styled.option`
+export const OptionItem = styled.div`
   padding: 4px 24px;
   width: 100%;
   text-align: left;

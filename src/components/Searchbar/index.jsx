@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   SearchIcon,
   SearchInput,
@@ -16,6 +16,8 @@ import {
 const Searchbar = () => {
   const [searchTerm, setSearchTerm] = useState(undefined);
   const debouncedSearchTerm = useDebounce(searchTerm, 750);
+
+  const searchRef = useRef(null);
 
   const { currentTheme } = useSelector((state) => {
     return state.theme;
@@ -36,13 +38,19 @@ const Searchbar = () => {
   };
 
   return (
-    <SearchInputContainer data-testid="searchbar" currentTheme={currentTheme}>
+    <SearchInputContainer
+      data-testid="searchbar"
+      currentTheme={currentTheme}
+      onClick={() => searchRef.current && searchRef.current.focus()}
+    >
       <label htmlFor="searchInput">
         <SearchIcon
           src={currentTheme === "light" ? SearchSVG : SearchSVGNight}
+          alt="search"
         />
       </label>
       <SearchInput
+        ref={searchRef}
         id="searchInput"
         placeholder="Search for a country…"
         onChange={handleChange}

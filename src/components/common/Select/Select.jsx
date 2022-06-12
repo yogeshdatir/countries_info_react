@@ -26,6 +26,8 @@ const Select = ({ selectedRegion, setSelectedRegion, options }) => {
     setIsActive(!isActive);
   };
 
+  // TODO: Add keyboard access to the select dropdown.
+  // * Notes: link: https://dequeuniversity.com/rules/axe/4.3/scrollable-region-focusable?application=axeAPI
   return (
     <Dropdown
       data-testid="select-container"
