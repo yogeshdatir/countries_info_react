@@ -28,6 +28,9 @@ export const CardContainer = styled.div`
   border-radius: 5px;
   overflow: hidden;
   cursor: pointer;
+  :hover {
+    transform: scale(1.03);
+  }
 `;
 
 export const FlagImage = styled.img`
@@ -37,7 +40,8 @@ export const FlagImage = styled.img`
 `;
 
 export const CountryDetails = styled.div`
-  padding: 24px;
+  padding: 1.5rem;
+  padding-bottom: 2.5rem;
 `;
 
 export const CountryName = styled.h2`
@@ -51,7 +55,9 @@ export const CountryInfo = styled.div`
   font-weight: 300;
   font-size: 14px;
   line-height: 16px;
-
+  p {
+    margin-bottom: 0.5rem;
+  }
   span {
     font-weight: 600;
   }
